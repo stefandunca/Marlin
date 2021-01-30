@@ -28,9 +28,11 @@ Connected: `AF1QipNy8ihsHkiOi6hvgFXawgp5naka6CbVaFTcoqyH`
 First row: `AF1QipN01QQzSlIvyEebCEWuOMbvfE3iiHpd8mLd3dVU`
     - Gnd,   MOSI,   5V
     - Brown, Orange, Green
+    - R#3     R#9    R#2
 Second row: `AF1QipME5IFwRDeWh2GwTN1afZJ245hPlrWxLBK-M3Qj`
     - Reset,        SCK,        MISO
     - Black Narrow, Black Wide, Yellow
+    - L#7           L#8         R#8
 
 Append to `avrdude.conf`:
 
@@ -105,6 +107,7 @@ Flash bootloader:
 # Test connection
 sudo avrdude -p atmega1284p -C ~/avrdude.conf -c pi_1 –v
 # Flash bootloader + firmware
+sudo avrdude -p atmega1284p -C ~/avrdude.conf -c pi_1 -v -U flash:w:/home/pi/firmware/builds/2.0.7.2/Marlin.ino.with_bootloader.sanguino.hex:i
 
 # Flash firmware
 avrdude -v -patmega1284p -carduino -P/dev/ttyUSB0 -D -Uflash:w:/home/human/Downloads/tmp/firmware.hex:i
